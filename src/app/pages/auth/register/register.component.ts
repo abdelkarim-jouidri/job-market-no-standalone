@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class RegisterComponent implements OnInit {
 
   userType : boolean = false;
+  isLoading = false;
 
   ngOnInit(): void {
     
@@ -32,5 +33,12 @@ export class RegisterComponent implements OnInit {
     return !this.isCandidat()
   }
   
+  register(){
+    this.isLoading = true
+  }
+
+  f(){
+    this.isLoading = true
+  }
 
 }
