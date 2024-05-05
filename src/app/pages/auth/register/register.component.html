@@ -21,6 +21,11 @@
             class="text-red-500">
             {{errorMsg}}
         </h2>
+        <h1 
+            *ngIf="successMsg"
+            class="text-green-500">
+            {{successMsg}}
+        </h1>
         <form 
             [formGroup]="registerForm"
             (ngSubmit)="handleRegister()"

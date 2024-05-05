@@ -16,6 +16,7 @@ export class RegisterComponent implements OnInit {
   isLoading = false;
   registerForm !: FormGroup
   errorMsg : string = ""
+  successMsg : string = ""
 
   constructor(
     private fb : FormBuilder,
@@ -69,8 +70,10 @@ export class RegisterComponent implements OnInit {
                                   registerform.email).
                           subscribe(response=>{
                             this.isLoading = false
-                              console.log("response from the register")
-                              console.log(response)
+                              this.successMsg = response
+                              this.registerForm.reset()
+                              this.registerForm.get("checkbox")?.setValue(false)
+                              console.log(this.registerForm.value)
                                 },
                               error=>{
                               console.log("error from the register")
