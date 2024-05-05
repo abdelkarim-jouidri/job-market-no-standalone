@@ -7,7 +7,7 @@ import { jwtDecode } from 'jwt-decode';
 })
 export class AuthService {
 
-  url: string = "http://localhost:8080/api/auth";
+  url: string = "http://localhost:8000/api/auth";
   isAuthenticated : boolean = false;
   roles !: any;
   email : any;

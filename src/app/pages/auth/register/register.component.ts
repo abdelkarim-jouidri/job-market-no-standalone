@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -9,13 +11,31 @@ export class RegisterComponent implements OnInit {
 
   userType : boolean = false;
   isLoading = false;
+  registerForm !: FormGroup
+
+  constructor(
+    private fb : FormBuilder,
+    private router : Router
+  ){
+
+  }
 
   ngOnInit(): void {
+    this.registerForm = this.fb.group({
+      fname: [''], 
+      lname: [''], 
+      email: [''], 
+      password: [''], 
+      checkbox : new FormControl(false)
+    });
+
+    this.registerForm.get("checkbox")?.valueChanges.subscribe((value)=>{
+      this.userType = value
+    })
     
     this.isCandidat()
     this.isUserRecruiter()
-    console.log("inside on initi" , "the value of checkbox is :")
-    console.log(this.userType)
+
 
   }
   
@@ -25,6 +45,8 @@ export class RegisterComponent implements OnInit {
     console.log(userTypeString)
   }
 
+
+
   isCandidat(){
     return this.userType === false ? true : false;
   }
@@ -33,12 +55,8 @@ export class RegisterComponent implements OnInit {
     return !this.isCandidat()
   }
   
-  register(){
-    this.isLoading = true
-  }
-
-  f(){
-    this.isLoading = true
+  handleRegister(){
+    
   }
 
 }
