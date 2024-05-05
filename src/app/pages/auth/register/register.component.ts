@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { timeout } from 'rxjs';
+import { AuthService } from '../../../_services/auth/auth.service';
+import { JobSeekerService } from '../../../_services/jobseeker/job-seeker.service';
 
 @Component({
   selector: 'app-register',
@@ -12,10 +15,12 @@ export class RegisterComponent implements OnInit {
   userType : boolean = false;
   isLoading = false;
   registerForm !: FormGroup
+  errorMsg : string = ""
 
   constructor(
     private fb : FormBuilder,
-    private router : Router
+    private router : Router,
+    private jobSeekerService : JobSeekerService
   ){
 
   }
@@ -32,9 +37,6 @@ export class RegisterComponent implements OnInit {
     this.registerForm.get("checkbox")?.valueChanges.subscribe((value)=>{
       this.userType = value
     })
-    
-    this.isCandidat()
-    this.isUserRecruiter()
 
 
   }
@@ -56,6 +58,32 @@ export class RegisterComponent implements OnInit {
   }
   
   handleRegister(){
+    this.isLoading = true
+    switch(this.isCandidat()) {
+      case true :
+        let registerform = this.registerForm.value
+        this.jobSeekerService.
+                          register(registerform.fname,
+                                  registerform.lname,
+                                  registerform.password,
+                                  registerform.email).
+                          subscribe(response=>{
+                            this.isLoading = false
+                              console.log("response from the register")
+                              console.log(response)
+                                },
+                              error=>{
+                              console.log("error from the register")
+                              console.log(error.message)
+                                this.isLoading = false
+                                this.errorMsg = error.error
+
+                              })
+        break
+      case false :
+        console.log("this is the recruiter case")
+
+    }
     
   }
 

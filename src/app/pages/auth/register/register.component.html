@@ -16,8 +16,14 @@
         <h1 class="text-xl md:text-2xl font-bold leading-tight mt-12">Create an account to get started !</h1>
         <h1 class="text-center mt-2 text-green-600 font-semibold">
         </h1>
+        <h2 
+            *ngIf="errorMsg"
+            class="text-red-500">
+            {{errorMsg}}
+        </h2>
         <form 
             [formGroup]="registerForm"
+            (ngSubmit)="handleRegister()"
             class="mt-6" >
             <div class="-space-y-px rounded-md shadow-sm flex flex-col gap-5">
                             <div class="flex gap-4 items-center justify-center ">
