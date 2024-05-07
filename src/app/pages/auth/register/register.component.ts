@@ -69,15 +69,14 @@ export class RegisterComponent implements OnInit {
                                   registerform.password,
                                   registerform.email).
                           subscribe(response=>{
-                            this.isLoading = false
+                            
                               this.successMsg = response
                               this.registerForm.reset()
                               this.registerForm.get("checkbox")?.setValue(false)
-                              console.log(this.registerForm.value)
+                              this.isLoading = false
                                 },
                               error=>{
-                              console.log("error from the register")
-                              console.log(error.message)
+                              
                                 this.isLoading = false
                                 this.errorMsg = error.error
 
