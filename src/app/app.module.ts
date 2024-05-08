@@ -12,6 +12,9 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { NavbarComponent } from './_shared/navbar/navbar.component';
 import { SidebarComponent } from './_shared/sidebar/sidebar.component';
 import { MainContentComponent } from './_shared/main-content/main-content.component';
+import { JobPostingsComponent } from './pages/job-postings/job-postings.component';
+import { JobPostingComponent } from './_shared/job-posting/job-posting.component';
+import { DetailedJobPostingComponent } from './_shared/detailed-job-posting/detailed-job-posting.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +24,10 @@ import { MainContentComponent } from './_shared/main-content/main-content.compon
     HomePageComponent,
     NavbarComponent,
     SidebarComponent,
-    MainContentComponent
+    MainContentComponent,
+    JobPostingsComponent,
+    JobPostingComponent,
+    DetailedJobPostingComponent
   ],
   imports: [
     ReactiveFormsModule,
