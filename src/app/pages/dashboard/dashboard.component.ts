@@ -3,6 +3,8 @@ import { JobSeekerService } from '../../_services/jobseeker/job-seeker.service';
 import { UserDetailsService } from '../../_services/userdetails/user-details.service';
 import { delay, of } from 'rxjs';
 import { Router } from '@angular/router';
+import {MatButtonModule} from '@angular/material/button';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,7 +13,9 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent implements OnInit{
   roles : any = new UserDetailsService().roles
-  isLoading = false
+  role : any = this.roles[0].authority;
+  isLoading = false;
+  showFiller = false;
   constructor(
     private userDetailsService : UserDetailsService,
     private router : Router

@@ -7,6 +7,8 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { JobPostingsComponent } from './pages/job-postings/job-postings.component';
 import { JobPostingComponent } from './_shared/job-posting/job-posting.component';
 import { DetailedJobPostingComponent } from './_shared/detailed-job-posting/detailed-job-posting.component';
+import { SidebarComponent } from './_shared/sidebar/sidebar.component';
+import { NavbarComponent } from './_shared/navbar/navbar.component';
 
 const routes: Routes = [
   {path : "login", component : LoginComponent},
@@ -16,6 +18,8 @@ const routes: Routes = [
   {path : "jobs", component : JobPostingsComponent},
   {path : "job", component : JobPostingComponent},
   {path : "detailedJob", component : DetailedJobPostingComponent},
+  {path : "sidebar", component : SidebarComponent},
+  {path : "nav", component : NavbarComponent}
 
 
 

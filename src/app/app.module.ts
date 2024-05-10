@@ -15,6 +15,9 @@ import { MainContentComponent } from './_shared/main-content/main-content.compon
 import { JobPostingsComponent } from './pages/job-postings/job-postings.component';
 import { JobPostingComponent } from './_shared/job-posting/job-posting.component';
 import { DetailedJobPostingComponent } from './_shared/detailed-job-posting/detailed-job-posting.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MatDrawerContainer } from '@angular/material/sidenav';
+import { MatDrawer } from '@angular/material/sidenav';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,8 +38,12 @@ import { DetailedJobPostingComponent } from './_shared/detailed-job-posting/deta
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
+    MatDrawerContainer,
+    MatDrawer
   ],
-  providers: [],
+  providers: [
+    provideAnimationsAsync()
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
