@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { timeout } from 'rxjs';
 import { AuthService } from '../../../_services/auth/auth.service';
 import { JobSeekerService } from '../../../_services/jobseeker/job-seeker.service';
+import { RecruiterService } from '../../../_services/recruiter/recruiter.service';
 
 @Component({
   selector: 'app-register',
@@ -21,7 +22,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private fb : FormBuilder,
     private router : Router,
-    private jobSeekerService : JobSeekerService
+    private jobSeekerService : JobSeekerService,
+    private recruiterService : RecruiterService
   ){
 
   }
@@ -83,7 +85,23 @@ export class RegisterComponent implements OnInit {
                               })
         break
       case false :
-        console.log("this is the recruiter case")
+        this.recruiterService.
+                          register(
+                                  registerform.password,
+                                  registerform.email).
+                          subscribe(response=>{
+                            
+                              this.successMsg = response
+                              this.registerForm.reset()
+                              this.registerForm.get("checkbox")?.setValue(false)
+                              this.isLoading = false
+                                },
+                              error=>{
+                              
+                                this.isLoading = false
+                                this.errorMsg = error.error
+
+                              })
 
     }
     
