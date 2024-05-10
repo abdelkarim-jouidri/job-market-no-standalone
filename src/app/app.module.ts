@@ -18,6 +18,7 @@ import { DetailedJobPostingComponent } from './_shared/detailed-job-posting/deta
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MatDrawerContainer } from '@angular/material/sidenav';
 import { MatDrawer } from '@angular/material/sidenav';
+import { ChildComponent } from './_shared/dashboard-components/child/child.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +31,8 @@ import { MatDrawer } from '@angular/material/sidenav';
     MainContentComponent,
     JobPostingsComponent,
     JobPostingComponent,
-    DetailedJobPostingComponent
+    DetailedJobPostingComponent,
+    ChildComponent
   ],
   imports: [
     ReactiveFormsModule,

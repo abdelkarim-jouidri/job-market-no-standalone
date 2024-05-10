@@ -9,11 +9,18 @@ import { JobPostingComponent } from './_shared/job-posting/job-posting.component
 import { DetailedJobPostingComponent } from './_shared/detailed-job-posting/detailed-job-posting.component';
 import { SidebarComponent } from './_shared/sidebar/sidebar.component';
 import { NavbarComponent } from './_shared/navbar/navbar.component';
+import { ChildComponent } from './_shared/dashboard-components/child/child.component';
 
 const routes: Routes = [
   {path : "login", component : LoginComponent},
   {path : "register", component : RegisterComponent},
-  {path : "dashboard", component : DashboardComponent},
+  {
+    path : "dashboard",
+    component : DashboardComponent,
+    children : [
+      {path : "child", component : ChildComponent},
+    ]
+  },
   {path : "", component : HomePageComponent},
   {path : "jobs", component : JobPostingsComponent},
   {path : "job", component : JobPostingComponent},
