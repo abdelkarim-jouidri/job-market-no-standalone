@@ -26,5 +26,9 @@ export class RecruiterService {
       {responseType : "text"});
    }
 
+   loadMyJobPostings(){
+    return this.http.get(this.url+'/myjobs');
+   }
+
    
 }

@@ -23,9 +23,11 @@ export class AuthInterceptor implements HttpInterceptor {
        return next.handle(request);
       const jwt = this.userDetail.jwt;
       console.log(jwt)
+      
        const clonedRequest = request.clone({
         headers : request.headers.set("Authorization", `Bearer ${jwt}`)
       });
+      console.log(clonedRequest)
       return next.handle(clonedRequest);
   }
 }

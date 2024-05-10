@@ -10,6 +10,9 @@ import { DetailedJobPostingComponent } from './_shared/detailed-job-posting/deta
 import { SidebarComponent } from './_shared/sidebar/sidebar.component';
 import { NavbarComponent } from './_shared/navbar/navbar.component';
 import { ChildComponent } from './_shared/dashboard-components/child/child.component';
+import { AddJobPostingModalComponent } from './_shared/miscellaneous/add-job-posting-modal/add-job-posting-modal.component';
+import { SelectSkillsComponent } from './_shared/miscellaneous/select-skills/select-skills.component';
+import { MainComponent } from './_shared/dashboard-components/main/main.component';
 
 const routes: Routes = [
   {path : "login", component : LoginComponent},
@@ -19,14 +22,14 @@ const routes: Routes = [
     component : DashboardComponent,
     children : [
       {path : "child", component : ChildComponent},
+      {path : "", component : MainComponent},
     ]
   },
   {path : "", component : HomePageComponent},
   {path : "jobs", component : JobPostingsComponent},
   {path : "job", component : JobPostingComponent},
   {path : "detailedJob", component : DetailedJobPostingComponent},
-  {path : "sidebar", component : SidebarComponent},
-  {path : "nav", component : NavbarComponent}
+
 
 
 

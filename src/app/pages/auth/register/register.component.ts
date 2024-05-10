@@ -62,9 +62,12 @@ export class RegisterComponent implements OnInit {
   
   handleRegister(){
     this.isLoading = true
+
     switch(this.isCandidat()) {
+
       case true :
-        let registerform = this.registerForm.value
+      let registerform = this.registerForm.value
+
         this.jobSeekerService.
                           register(registerform.fname,
                                   registerform.lname,
@@ -85,15 +88,16 @@ export class RegisterComponent implements OnInit {
                               })
         break
       case false :
+      
         this.recruiterService.
                           register(
-                                  registerform.password,
-                                  registerform.email).
+                            this.registerForm.value.password,
+                            this.registerForm.value.email).
                           subscribe(response=>{
                             
                               this.successMsg = response
                               this.registerForm.reset()
-                              this.registerForm.get("checkbox")?.setValue(false)
+                              this.registerForm.get("checkbox")?.setValue(true)
                               this.isLoading = false
                                 },
                               error=>{

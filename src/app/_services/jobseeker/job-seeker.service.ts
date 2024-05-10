@@ -28,7 +28,7 @@ export class JobSeekerService {
    }
 
    register(firstName:string, lastName:string, password:string, email:string){
-      console.log("from the register method url : "+this.url)
+      
       return this.http.post(this.url+'/auth/register', {
         "email":email,
         "firstname":firstName,

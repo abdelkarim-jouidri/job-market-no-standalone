@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { RegisterComponent } from './pages/auth/register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { NavbarComponent } from './_shared/navbar/navbar.component';
@@ -19,6 +19,14 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { MatDrawerContainer } from '@angular/material/sidenav';
 import { MatDrawer } from '@angular/material/sidenav';
 import { ChildComponent } from './_shared/dashboard-components/child/child.component';
+import { AddJobPostingModalComponent } from './_shared/miscellaneous/add-job-posting-modal/add-job-posting-modal.component';
+import {MatDialogModule} from '@angular/material/dialog'
+import {MatSelectModule} from '@angular/material/select';
+import { SelectSkillsComponent } from './_shared/miscellaneous/select-skills/select-skills.component'
+import { AuthInterceptor } from './_helpers/interceptors/auth.interceptor';
+import { MainComponent } from './_shared/dashboard-components/main/main.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +40,11 @@ import { ChildComponent } from './_shared/dashboard-components/child/child.compo
     JobPostingsComponent,
     JobPostingComponent,
     DetailedJobPostingComponent,
-    ChildComponent
+    ChildComponent,
+    SelectSkillsComponent,
+    AddJobPostingModalComponent,
+    MainComponent
+  
   ],
   imports: [
     ReactiveFormsModule,
@@ -41,10 +53,18 @@ import { ChildComponent } from './_shared/dashboard-components/child/child.compo
     FormsModule,
     AppRoutingModule,
     MatDrawerContainer,
-    MatDrawer
+    MatDrawer,
+    MatDialogModule,
+    MatSelectModule
+    
   ],
   providers: [
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    {
+      provide : HTTP_INTERCEPTORS,
+      useClass : AuthInterceptor,
+      multi: true,
+    }
   ],
   bootstrap: [AppComponent]
 })

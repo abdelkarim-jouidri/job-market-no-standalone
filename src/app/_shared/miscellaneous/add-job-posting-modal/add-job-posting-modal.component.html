@@ -1,0 +1,80 @@
+<form [formGroup]="jobPostingForm" (ngSubmit)="onSubmit()" class="w-[1000px] p-6">
+    <!-- Description -->
+    <div class="mb-5">
+        <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+        <textarea
+            id="description"
+            formControlName="description"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Enter job description"
+        ></textarea>
+        <!-- Error message for description -->
+        <div *ngIf="jobPostingForm.controls['description'].invalid && jobPostingForm.controls['description'].touched" class="text-red-500 text-sm">
+            Description is required (at least 5 characters).
+        </div>
+    </div>
+
+    <!-- Title -->
+    <div class="mb-5">
+        <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
+        <input
+            type="text"
+            id="title"
+            formControlName="title"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Enter job title"
+        />
+        <!-- Error message for title -->
+        <div *ngIf="jobPostingForm.controls['title'].invalid && jobPostingForm.controls['title'].touched" class="text-red-500 text-sm">
+            Title is required (at least 3 characters).
+        </div>
+    </div>
+
+    <!-- Contract Type -->
+    <div class="mb-5">
+        <label for="contractType" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contract Type</label>
+        <select
+            id="contractType"
+            formControlName="contractType"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        >
+            <option value="">Select Contract Type</option>
+            <option *ngFor="let type of contractTypes" [value]="type">{{ type }}</option>
+        </select>
+        <!-- Error message for contractType -->
+        <div *ngIf="jobPostingForm.controls['contractType'].invalid && jobPostingForm.controls['contractType'].touched" class="text-red-500 text-sm">
+            Contract type is required.
+        </div>
+    </div>
+
+    <!-- Skills -->
+    <div class="mb-5">
+        <mat-form-field>
+            <mat-label>Skills</mat-label>
+            <mat-select formControlName="skills" multiple>
+              <mat-select-trigger>
+                {{skills.value?.[0] || ''}}
+                @if ((skills.value?.length || 0) > 1) {
+                  <span class="example-additional-selection">
+                    (+{{(skills.value?.length || 0) - 1}} {{skills.value?.length === 2 ? 'other' : 'others'}})
+                  </span>
+                }
+              </mat-select-trigger>
+              @for (skill of skillsList; track skill) {
+            <mat-option [value]="skill.id">{{skill.name}}</mat-option>
+          }
+            </mat-select>
+        </mat-form-field>
+        
+    </div>
+
+    <!-- Submit Button -->
+    <div class="flex items-start mb-5">
+        <button 
+            type="submit" 
+            mat-raised-button
+            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            Submit
+        </button>
+    </div>
+</form>
