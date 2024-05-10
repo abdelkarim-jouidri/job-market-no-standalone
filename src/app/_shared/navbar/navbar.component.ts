@@ -1,4 +1,6 @@
 import { Component, Input, OnInit, input } from '@angular/core';
+import { UserDetailsService } from '../../_services/userdetails/user-details.service';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -6,6 +8,14 @@ import { Component, Input, OnInit, input } from '@angular/core';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent implements OnInit{
+
+  constructor(
+    private userDetails : UserDetailsService,
+    private router : Router
+  ){
+
+  }
+
   ngOnInit(): void {
     console.log("is candidate : ", this.isCandidate())
     console.log("is RECRUITER : ", this.isRecruiter())
@@ -20,4 +30,9 @@ export class NavbarComponent implements OnInit{
   isRecruiter(){
     return this.role.includes("RECRUTER");
   }
+  logout(){
+    this.userDetails.logout();
+    this.router.navigateByUrl("/")
+  }
+
 }
